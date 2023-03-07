@@ -62,12 +62,13 @@ public class ControllerAssigner : MonoBehaviour
 
     public void OnAim(InputAction.CallbackContext context)
     {
-        if(devMechanicController != null)
+        if (devMechanicController != null)
         {
             if (context.ReadValue<Vector2>() != Vector2.zero)
             {
-                devMechanicController.aim = context.ReadValue<Vector2>();
+                devMechanicController.aim = context.ReadValue<Vector2>().normalized;
                 devMechanicController.aimAngle = Vector2.SignedAngle(Vector2.up, context.ReadValue<Vector2>());
             }
+        }
     }
 }
