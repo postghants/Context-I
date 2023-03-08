@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class devProjectileController : MonoBehaviour
+public class artProjectileController : MonoBehaviour
 {
-    public Type heldMechanic;
+    public Type heldShape;
     public float speed;
     public Vector2 direction;
     public float lifespan;
@@ -20,11 +20,11 @@ public class devProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        MechanicController mc = other.GetComponent<MechanicController>();
+        ShapeController sc = other.GetComponent<ShapeController>();
         characterJump characterJump = other.GetComponent<characterJump>();
-        if(mc != null)
+        if(sc != null)
         {
-            mc.SwapMechanic(heldMechanic);
+            sc.SwapShape(heldShape);
             DestroySelf();
         }
         else if(characterJump != null)

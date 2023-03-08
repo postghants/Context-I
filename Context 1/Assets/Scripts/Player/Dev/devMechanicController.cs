@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class devMechanicController : MonoBehaviour
 {
-    public MechanicController.Mechanic heldMechanic;
+    public Type heldMechanic;
     public Transform aimArrow;
     public movementLimiter movementLimiter;
 
@@ -29,9 +28,9 @@ public class devMechanicController : MonoBehaviour
 
     public void OnAction1(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && closestMechanic != null)
         {
-            ChangeHeldMechanic(closestMechanic.currentMechanic);
+            ChangeHeldMechanic(closestMechanic.GetMechanic());
         }
     }
     public void OnAction2(InputAction.CallbackContext context)
@@ -84,7 +83,7 @@ public class devMechanicController : MonoBehaviour
         {
             devScanIcon.gameObject.SetActive(true);
             devScanIcon.transform.position = closestMechanic.transform.position + scanIconOffset;
-            devScanIcon.SetIconMechanic(closestMechanic.currentMechanic);
+            devScanIcon.SetIconMechanic(closestMechanic.GetMechanic());
         }
         else
         {
@@ -92,19 +91,22 @@ public class devMechanicController : MonoBehaviour
         }
     }
 
-    public void ChangeHeldMechanic(MechanicController.Mechanic newMechanic)
+    public void ChangeHeldMechanic(Type newMechanic)
     {
         heldMechanic = newMechanic;
     }
 
     public void ShootProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab);
-        devProjectileController dpc = projectile.GetComponent<devProjectileController>();
-        dpc.transform.position = new Vector2(transform.position.x, transform.position.y) + aim * projectileSpawnOffset;
-        dpc.heldMechanic = heldMechanic;
-        dpc.speed = projectileSpeed;
-        dpc.direction = aim;
-        dpc.lifespan = projectileLifespan;
+        if (heldMechanic != null)
+        {
+            GameObject projectile = Instantiate(projectilePrefab);
+            devProjectileController dpc = projectile.GetComponent<devProjectileController>();
+            dpc.transform.position = new Vector2(transform.position.x, transform.position.y) + aim * projectileSpawnOffset;
+            dpc.heldMechanic = heldMechanic;
+            dpc.speed = projectileSpeed;
+            dpc.direction = aim;
+            dpc.lifespan = projectileLifespan;
+        }
     }
 }

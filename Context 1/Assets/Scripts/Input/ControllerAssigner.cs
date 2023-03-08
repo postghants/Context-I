@@ -70,5 +70,14 @@ public class ControllerAssigner : MonoBehaviour
                 devMechanicController.aimAngle = Vector2.SignedAngle(Vector2.up, context.ReadValue<Vector2>());
             }
         }
+
+        if (artMechanicController != null)
+        {
+            if (context.ReadValue<Vector2>() != Vector2.zero)
+            {
+                artMechanicController.aim = context.ReadValue<Vector2>().normalized;
+                artMechanicController.aimAngle = Vector2.SignedAngle(Vector2.up, context.ReadValue<Vector2>());
+            }
+        }
     }
 }

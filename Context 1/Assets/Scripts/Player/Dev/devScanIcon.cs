@@ -1,41 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class devScanIcon : MonoBehaviour
 {
-    public MechanicController.Mechanic heldMechanic;
+    public Type heldMechanic;
     public SpriteRenderer spriteRenderer;
-
-    public Sprite doorMechanicSprite;
-    public Sprite enemyMechanicSprite;
-    public Sprite ballMechanicSprite;
-    public Sprite balloonMechanicSprite;
-    public Sprite rockMechanicSprite;
 
     public void Awake()
     {
         transform.parent = null;
     }
 
-    public void SetIconMechanic(MechanicController.Mechanic mechanic)
+    public void SetIconMechanic(Type mechanic)
     {
-        heldMechanic = mechanic;
-
-        switch (heldMechanic)
-        {
-            case MechanicController.Mechanic.None:
-                spriteRenderer.sprite = null; break;
-            case MechanicController.Mechanic.Door: 
-                spriteRenderer.sprite = doorMechanicSprite; break;
-            case MechanicController.Mechanic.Enemy:
-                spriteRenderer.sprite = enemyMechanicSprite; break;
-            case MechanicController.Mechanic.Ball:
-                spriteRenderer.sprite = ballMechanicSprite; break;
-            case MechanicController.Mechanic.Balloon:
-                spriteRenderer.sprite = balloonMechanicSprite; break;
-            case MechanicController.Mechanic.Rock:
-                spriteRenderer.sprite = rockMechanicSprite; break;
-        }
+        spriteRenderer.sprite = Resources.Load<Sprite>("Icons/" + mechanic.Name + "Icon");
     }
 }
