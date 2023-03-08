@@ -48,4 +48,9 @@ public abstract class ShapeController : MonoBehaviour
     {
         return this.GetType();
     }
+
+    public static Sprite GetIcon(Type shape)
+    {
+        return Resources.Load<Sprite>("Icons/" + shape.Name + "Icon");
+    }
 }

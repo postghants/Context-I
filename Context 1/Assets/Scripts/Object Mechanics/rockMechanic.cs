@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rockMechanic : MonoBehaviour
+public class rockMechanic : MechanicController
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody2D body;
+
+    private void Awake()
     {
-        
+        body = GetComponent<Rigidbody2D>();
+        body.constraints ^= RigidbodyConstraints2D.FreezePositionX; //Allow pushing
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        body.constraints ^= RigidbodyConstraints2D.FreezePositionX; //Disallow pushing
     }
 }

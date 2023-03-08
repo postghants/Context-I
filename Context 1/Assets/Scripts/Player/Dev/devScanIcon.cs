@@ -13,6 +13,6 @@ public class devScanIcon : MonoBehaviour
 
     public void SetIconMechanic(Type mechanic)
     {
-        spriteRenderer.sprite = Resources.Load<Sprite>("Icons/" + mechanic.Name + "Icon");
+        spriteRenderer.sprite = MechanicController.GetIcon(mechanic);
     }
 }

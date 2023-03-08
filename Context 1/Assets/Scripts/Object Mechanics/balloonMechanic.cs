@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class balloonMechanic : MonoBehaviour
+public class balloonMechanic : MechanicController
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody2D body;
+
+    private void Awake()
     {
-        
+        body = GetComponent<Rigidbody2D>();
+        body.gravityScale *= -1;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        body.gravityScale *= -1;
     }
 }

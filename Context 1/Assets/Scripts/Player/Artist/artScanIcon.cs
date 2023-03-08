@@ -13,6 +13,6 @@ public class artScanIcon : MonoBehaviour
 
     public void SetIconShape(Type shape)
     {
-        spriteRenderer.sprite = Resources.Load<Sprite>("Icons/" + shape.Name + "Icon");
+        spriteRenderer.sprite = ShapeController.GetIcon(shape);
     }
 }
