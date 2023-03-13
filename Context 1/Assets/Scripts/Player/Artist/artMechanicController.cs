@@ -6,6 +6,7 @@ public class artMechanicController : MonoBehaviour
 {
     public Type heldShape;
     public Transform aimArrow;
+    public artUIController artUI;
     public movementLimiter movementLimiter;
 
     public artScanIcon artScanIcon;
@@ -94,6 +95,7 @@ public class artMechanicController : MonoBehaviour
     public void ChangeHeldShape(Type newShape)
     {
         heldShape = newShape;
+        artUI.SetIconShape(newShape);
     }
 
     public void ShootProjectile()
