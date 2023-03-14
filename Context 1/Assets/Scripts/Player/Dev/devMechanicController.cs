@@ -6,6 +6,7 @@ public class devMechanicController : MonoBehaviour
 {
     public Type heldMechanic;
     public Transform aimArrow;
+    public devUIController devUI;
     public movementLimiter movementLimiter;
 
     public devScanIcon devScanIcon;
@@ -94,6 +95,7 @@ public class devMechanicController : MonoBehaviour
     public void ChangeHeldMechanic(Type newMechanic)
     {
         heldMechanic = newMechanic;
+        devUI.SetIconMechanic(newMechanic);
     }
 
     public void ShootProjectile()

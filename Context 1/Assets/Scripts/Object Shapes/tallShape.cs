@@ -5,8 +5,12 @@ public class tallShape : ShapeController
 {
     protected override void Awake()
     {
-        xScale = 0.6f;
-        yScale = 2.4f;
+        colliderPath = new[] {
+            new Vector2(-0.3f, 1.2f),
+            new Vector2(-0.3f, -1.2f),
+            new Vector2(0.3f, -1.2f),
+            new Vector2(0.3f, 1.2f)
+        };
 
         base.Awake();
     }

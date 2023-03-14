@@ -9,13 +9,8 @@ public abstract class ShapeController : MonoBehaviour
     private float shapeChangeDuration = 0.8f;
     private float shapeChangeState = 0f;
     private bool shapeChangeDone = false;
-
-    protected float xScale = 1f;
-    protected float yScale = 1f;
     protected Vector2[] colliderPath;
 
-    private Vector3 oldScale;
-    private float sizeFactor;
     private PolygonCollider2D colliderShape;
     private SpriteSkin spriteSkin;
     private Vector2[] oldColliderPath;
@@ -32,12 +27,8 @@ public abstract class ShapeController : MonoBehaviour
             new Vector2(0.5f, 0.5f)
         }; //Set Collider to basic Square
 
-        oldScale = transform.localScale;
-        sizeFactor = transform.localScale.z;
-
         if (applyInstantly)
         {
-            transform.localScale = new Vector3(xScale * sizeFactor, yScale * sizeFactor, oldScale.z);
             colliderShape.SetPath(0, colliderPath);
             for (int i = 0; i < oldColliderPath.Length; i++)
             {
@@ -53,8 +44,6 @@ public abstract class ShapeController : MonoBehaviour
         if (!shapeChangeDone) {
             shapeChangeState += Time.fixedDeltaTime;
             shapeChangeState = Mathf.Min(shapeChangeState, shapeChangeDuration);
-
-            transform.localScale = Vector3.Lerp(oldScale, new Vector3(xScale * sizeFactor, yScale * sizeFactor, oldScale.z), shapeChangeState / shapeChangeDuration);
 
             List<Vector2> newColliderPath = new();
             for(int i = 0; i < oldColliderPath.Length; i++)

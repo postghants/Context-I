@@ -5,8 +5,12 @@ public class normalShape : ShapeController
 {
     protected override void Awake()
     {
-        xScale = 1f;
-        yScale = 1f;
+        colliderPath = new[] {
+            new Vector2(-0.5f, 0.5f),
+            new Vector2(-0.5f, -0.5f),
+            new Vector2(0.5f, -0.5f),
+            new Vector2(0.5f, 0.5f)
+        };
 
         base.Awake();
     }
