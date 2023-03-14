@@ -8,6 +8,8 @@ public class artMechanicController : MonoBehaviour
     public Transform aimArrow;
     public artUIController artUI;
     public movementLimiter movementLimiter;
+    public AudioSource shootAudio;
+    public AudioSource suckAudio;
 
     public artScanIcon artScanIcon;
     public Vector3 scanIconOffset;
@@ -29,9 +31,14 @@ public class artMechanicController : MonoBehaviour
 
     public void OnAction1(InputAction.CallbackContext context)
     {
-        if (context.started && closestShape != null)
+        if (context.started)
         {
-            ChangeHeldShape(closestShape.GetShape());
+            if (suckAudio.isPlaying)
+                suckAudio.Stop();
+
+            suckAudio.Play();
+            if (closestShape != null)
+                ChangeHeldShape(closestShape.GetShape());
         }
     }
     public void OnAction2(InputAction.CallbackContext context)
@@ -102,6 +109,11 @@ public class artMechanicController : MonoBehaviour
     {
         if (heldShape != null)
         {
+            if (shootAudio.isPlaying)
+            {
+                shootAudio.Stop();
+            }
+            shootAudio.Play();
             GameObject projectile = Instantiate(projectilePrefab);
             artProjectileController apc = projectile.GetComponent<artProjectileController>();
             apc.transform.position = new Vector2(transform.position.x, transform.position.y) + aim * projectileSpawnOffset;

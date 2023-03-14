@@ -8,13 +8,14 @@ public class devMechanicController : MonoBehaviour
     public Transform aimArrow;
     public devUIController devUI;
     public movementLimiter movementLimiter;
+    public AudioSource shootAudio;
+    public AudioSource suckAudio;
 
     public devScanIcon devScanIcon;
     public Vector3 scanIconOffset;
     public float scanRadius;
     [HideInInspector] public MechanicController closestMechanic;
     [HideInInspector] public float closestMechanicDistance;
-
 
     public bool aiming = false;
     public Vector2 aim;
@@ -29,9 +30,15 @@ public class devMechanicController : MonoBehaviour
 
     public void OnAction1(InputAction.CallbackContext context)
     {
-        if (context.started && closestMechanic != null)
+        
+        if (context.started)
         {
-            ChangeHeldMechanic(closestMechanic.GetMechanic());
+            if (suckAudio.isPlaying)
+                suckAudio.Stop();
+
+            suckAudio.Play();
+            if(closestMechanic != null) 
+                ChangeHeldMechanic(closestMechanic.GetMechanic());
         }
     }
     public void OnAction2(InputAction.CallbackContext context)
@@ -102,6 +109,11 @@ public class devMechanicController : MonoBehaviour
     {
         if (heldMechanic != null)
         {
+            if (shootAudio.isPlaying)
+            {
+                shootAudio.Stop();
+            }
+            shootAudio.Play();
             GameObject projectile = Instantiate(projectilePrefab);
             devProjectileController dpc = projectile.GetComponent<devProjectileController>();
             dpc.transform.position = new Vector2(transform.position.x, transform.position.y) + aim * projectileSpawnOffset;
