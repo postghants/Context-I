@@ -10,6 +10,7 @@ public class characterMovement : MonoBehaviour
     [Header("Components")]
     [SerializeField] movementLimiter moveLimit;
     private Rigidbody2D body;
+    private Animator animator;
     characterGround ground;
 
     [Header("Movement Stats")]
@@ -43,6 +44,7 @@ public class characterMovement : MonoBehaviour
     {
         //Find the character's Rigidbody and ground detection script
         body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         ground = GetComponent<characterGround>();
     }
 
@@ -70,11 +72,13 @@ public class characterMovement : MonoBehaviour
         if (directionX != 0)
         {
             transform.localScale = new Vector3(directionX > 0 ? 1 : -1, 1, 1);
+            animator.SetBool("Running", true);
             pressingKey = true;
         }
         else
         {
-            pressingKey = false;
+            animator.SetBool("Running", false);
+            pressingKey = false; 
         }
 
         //Calculate's the character's desired velocity - which is the direction you are facing, multiplied by the character's maximum speed
