@@ -217,7 +217,7 @@ MonoBehaviour:
   variablejumpHeight: 0
   jumpCutOff: 1.2
   speedLimit: 100
-  coyoteTime: 0.15
+  coyoteTime: 0.05
   jumpBuffer: 0.15
   playerIndex: 0
   jumpSpeed: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveLimit: {fileID: 2513287067278166672}
-  maxSpeed: 10
+  maxSpeed: 6
   maxAcceleration: 80
   maxDecceleration: 80
   maxTurnSpeed: 100
