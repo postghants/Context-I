@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
@@ -80,4 +81,10 @@ public class ControllerAssigner : MonoBehaviour
             }
         }
     }
+
+    public void OnReset(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
+

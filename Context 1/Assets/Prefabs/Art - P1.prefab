@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundLength: 0.65
-  colliderOffset: {x: 0.3, y: 0, z: 0}
+  colliderOffset: {x: 0.1, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 136
