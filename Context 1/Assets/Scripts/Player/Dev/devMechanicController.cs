@@ -7,6 +7,7 @@ public class devMechanicController : MonoBehaviour
     public Type heldMechanic;
     public Transform aimArrow;
     public devUIController devUI;
+    public ParticleSystem scanParticles;
     public movementLimiter movementLimiter;
     public AudioSource shootAudio;
     public AudioSource suckAudio;
@@ -34,9 +35,12 @@ public class devMechanicController : MonoBehaviour
         if (context.started)
         {
             if (suckAudio.isPlaying)
-                suckAudio.Stop();
+                suckAudio.Stop(); 
+            if (scanParticles.isPlaying)
+                scanParticles.Stop();
 
             suckAudio.Play();
+            scanParticles.Play();
             if(closestMechanic != null) 
                 ChangeHeldMechanic(closestMechanic.GetMechanic());
         }

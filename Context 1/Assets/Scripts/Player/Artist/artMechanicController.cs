@@ -7,6 +7,7 @@ public class artMechanicController : MonoBehaviour
     public Type heldShape;
     public Transform aimArrow;
     public artUIController artUI;
+    public ParticleSystem scanParticles;
     public movementLimiter movementLimiter;
     public AudioSource shootAudio;
     public AudioSource suckAudio;
@@ -35,8 +36,11 @@ public class artMechanicController : MonoBehaviour
         {
             if (suckAudio.isPlaying)
                 suckAudio.Stop();
+            if (scanParticles.isPlaying)
+                scanParticles.Stop();
 
             suckAudio.Play();
+            scanParticles.Play();
             if (closestShape != null)
                 ChangeHeldShape(closestShape.GetShape());
         }
