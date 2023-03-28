@@ -2411,7 +2411,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7002348132177570676, guid: b70372a0384e12048a4a08fac34cdb3c, type: 3}
       propertyPath: nextLevelName
-      value: NovaLevel4
+      value: MainLevel2
       objectReference: {fileID: 0}
     - target: {fileID: 8933917092608289268, guid: b70372a0384e12048a4a08fac34cdb3c, type: 3}
       propertyPath: m_Name
