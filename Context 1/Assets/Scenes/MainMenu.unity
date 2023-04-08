@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 4747587}
   - component: {fileID: 4747586}
   - component: {fileID: 4747588}
+  - component: {fileID: 4747589}
   m_Layer: 5
   m_Name: Start Prompt
   m_TagString: Untagged
@@ -272,9 +273,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876da7da311aada418d5429911de0679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: MainLevel1
+  nextLevelName: NovaLevel1
   WiggleSize: 4
   WiggleDuration: 1.5
+--- !u!114 &4747589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 6742a94d9ae414445a4b9bc94359a98e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b4be3c06-f859-4ee2-8d36-e2f8a0a346b6
+    m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4747588}
+        m_TargetAssemblyTypeName: MenuPrompt, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76133ceb-cb7e-49f0-a1b7-a39200d586aa
+    m_ActionName: Player/Jump[/Keyboard/space,/SwitchProControllerHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 236b5f02-495e-4dfc-abb0-b5bcd71a232d
+    m_ActionName: Player/Action1[/Keyboard/comma,/SwitchProControllerHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 213a6aa3-7ea3-4ba3-988f-b3e24b314e75
+    m_ActionName: Player/Action2[/Keyboard/period,/SwitchProControllerHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 211d608a-fa03-4a2b-b91d-27723b63bb4a
+    m_ActionName: Player/Aim[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c59057bd-1414-4437-90e1-cd8d6500385a
+    m_ActionName: Player/Reset[/SwitchProControllerHID/leftShoulder]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &321733290
 GameObject:
   m_ObjectHideFlags: 0

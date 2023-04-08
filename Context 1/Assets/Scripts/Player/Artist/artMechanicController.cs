@@ -78,7 +78,6 @@ public class artMechanicController : MonoBehaviour
         closestShape = null;
         closestShapeDistance = scanRadius;
         Collider2D[] colliderList = Physics2D.OverlapCircleAll(transform.position, scanRadius);
-        Debug.Log(colliderList.Length);
         for(int i = 0; i < colliderList.Length; i++)
         {
             ShapeController sc = colliderList[i].GetComponent<ShapeController>();
