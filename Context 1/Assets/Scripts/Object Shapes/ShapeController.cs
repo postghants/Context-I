@@ -6,12 +6,14 @@ using UnityEngine.U2D.Animation;
 public abstract class ShapeController : MonoBehaviour
 {
     [SerializeField] private bool applyInstantly;
+    private float bumpStrength = 2f;
     private float shapeChangeDuration = 0.8f;
     private float shapeChangeState = 0f;
     private bool shapeChangeDone = false;
     protected Vector2[] colliderPath;
 
     private PolygonCollider2D colliderShape;
+    private Rigidbody2D body;
     private SpriteSkin spriteSkin;
     private Vector2[] oldColliderPath;
 
@@ -19,6 +21,7 @@ public abstract class ShapeController : MonoBehaviour
     {
         colliderShape = GetComponent<PolygonCollider2D>();
         spriteSkin = GetComponent<SpriteSkin>();
+        body = GetComponent<Rigidbody2D>();
         oldColliderPath = colliderShape.GetPath(0);
         if(colliderPath == null) colliderPath = new[] {
             new Vector2(-0.5f, 0.5f),
@@ -36,6 +39,9 @@ public abstract class ShapeController : MonoBehaviour
             }
 
             shapeChangeDone = true;
+        } else
+        {
+            body.velocity += new Vector2(0, bumpStrength);
         }
     }
 

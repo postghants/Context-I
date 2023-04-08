@@ -4,6 +4,11 @@ using UnityEngine.InputSystem;
 
 public class artMechanicController : MonoBehaviour
 {
+    [SerializeField] private GameObject collectiblePrefab;
+    [SerializeField] private float copyCooldown, pasteCooldown;
+    private float currentCopyCooldown, currentPasteCooldown = 0f;
+    private bool isCopyOnCooldown, isPasteOnCooldown = true;
+
     public Type heldShape;
     public Transform aimArrow;
     public artUIController artUI;
@@ -32,19 +37,23 @@ public class artMechanicController : MonoBehaviour
 
     public void OnAction1(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isCopyOnCooldown)
         {
             if (suckAudio.isPlaying)
                 suckAudio.Stop();
             if (scanParticles.isPlaying)
                 scanParticles.Stop();
 
-            suckAudio.Play();
-            scanParticles.Play();
             if (closestShape != null)
+            {
+                suckAudio.Play();
+                scanParticles.Play();
                 ChangeHeldShape(closestShape.GetShape());
+                isCopyOnCooldown = true;
+            }
         }
     }
+
     public void OnAction2(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -66,10 +75,30 @@ public class artMechanicController : MonoBehaviour
 
     private void Update()
     {
+        UpdateCooldowns();
+
         ScanForShapes();
         if (aiming)
         {
             aimArrow.SetPositionAndRotation(aim * aimArrowOffset + new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(0, 0, aimAngle));
+        }
+    }
+
+    private void UpdateCooldowns()
+    {
+        if(isCopyOnCooldown) currentCopyCooldown -= Time.deltaTime;
+        if(isPasteOnCooldown) currentPasteCooldown -= Time.deltaTime;
+
+        if (currentCopyCooldown <= 0f)
+        {
+            currentCopyCooldown = copyCooldown;
+            isCopyOnCooldown = false;
+        }
+
+        if (currentPasteCooldown <= 0f)
+        {
+            currentPasteCooldown = pasteCooldown;
+            isPasteOnCooldown = false;
         }
     }
 
@@ -91,7 +120,7 @@ public class artMechanicController : MonoBehaviour
                 }
             }
         }
-        if(closestShape != null)
+        if(closestShape != null && !isCopyOnCooldown)
         {
             artScanIcon.gameObject.SetActive(true);
             artScanIcon.transform.position = closestShape.transform.position + scanIconOffset;
@@ -107,11 +136,21 @@ public class artMechanicController : MonoBehaviour
     {
         heldShape = newShape;
         artUI.SetIconShape(newShape);
+        SpawnCollectible();
+    }
+
+    private void SpawnCollectible()
+    {
+        artCollectibleIcon collectible = Instantiate(collectiblePrefab).GetComponent<artCollectibleIcon>();
+
+        collectible.transform.position = artScanIcon.transform.position;
+        collectible.SetIconShape(heldShape);
+        collectible.SetTarget(transform);
     }
 
     public void ShootProjectile()
     {
-        if (heldShape != null)
+        if (heldShape != null && !isPasteOnCooldown)
         {
             if (shootAudio.isPlaying)
             {
@@ -125,6 +164,9 @@ public class artMechanicController : MonoBehaviour
             apc.speed = projectileSpeed;
             apc.direction = aim;
             apc.lifespan = projectileLifespan;
+
+            apc.SetIconShape(heldShape);
+            isPasteOnCooldown = true;
         }
     }
 }
