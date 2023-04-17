@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-public class artCollectibleIcon : MonoBehaviour
+public class CollectibleIcon : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private float initialSpeed, acceleration, maxSpeed, collectRange;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Transform target;
 
-    public void SetIconShape(Type shape)
+    public void SetIconType(Type shape)
     {
         spriteRenderer.sprite = ShapeController.GetIcon(shape);
     }

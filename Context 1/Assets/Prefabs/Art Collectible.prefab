@@ -94,10 +94,10 @@ GameObject:
   m_Component:
   - component: {fileID: 630778543813780180}
   - component: {fileID: 9028503446812564936}
-  - component: {fileID: 5738994860295600521}
   - component: {fileID: 2296032768773857997}
   - component: {fileID: 1931998081154089812}
   - component: {fileID: 3200133388937873506}
+  - component: {fileID: -2942764665047657075}
   m_Layer: 6
   m_Name: Art Collectible
   m_TagString: Untagged
@@ -173,24 +173,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5738994860295600521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4166948302992511758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e8df585684ced45aa71048d22b5979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  body: {fileID: 2296032768773857997}
-  initialSpeed: 8
-  acceleration: 1
-  maxSpeed: 10
-  collectRange: 0.5
-  spriteRenderer: {fileID: 9028503446812564936}
 --- !u!50 &2296032768773857997
 Rigidbody2D:
   serializedVersion: 4
@@ -4991,3 +4973,21 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-2942764665047657075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166948302992511758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9353c262cf61d9343beb99deffd3e727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 2296032768773857997}
+  initialSpeed: 8
+  acceleration: 1
+  maxSpeed: 10
+  collectRange: 0.5
+  spriteRenderer: {fileID: 9028503446812564936}

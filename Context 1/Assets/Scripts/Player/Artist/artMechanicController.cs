@@ -47,7 +47,7 @@ public class artMechanicController : MonoBehaviour
             if (closestShape != null)
             {
                 suckAudio.Play();
-                scanParticles.Play();
+                //scanParticles.Play();
                 ChangeHeldShape(closestShape.GetShape());
                 isCopyOnCooldown = true;
             }
@@ -140,10 +140,10 @@ public class artMechanicController : MonoBehaviour
 
     private void SpawnCollectible()
     {
-        artCollectibleIcon collectible = Instantiate(collectiblePrefab).GetComponent<artCollectibleIcon>();
+        CollectibleIcon collectible = Instantiate(collectiblePrefab).GetComponent<CollectibleIcon>();
 
         collectible.transform.position = artScanIcon.transform.position;
-        collectible.SetIconShape(heldShape);
+        collectible.SetIconType(heldShape);
         collectible.SetTarget(transform);
     }
 
