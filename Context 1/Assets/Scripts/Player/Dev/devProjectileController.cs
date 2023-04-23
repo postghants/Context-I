@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class devProjectileController : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     public Type heldMechanic;
     public float speed;
     public Vector2 direction;
     public float lifespan;
 
+    public void SetIconMechanic(Type mechanic)
+    {
+        spriteRenderer.sprite = MechanicController.GetIcon(mechanic);
+    }
     private void FixedUpdate()
     {
         transform.Translate(direction * speed * Time.deltaTime);

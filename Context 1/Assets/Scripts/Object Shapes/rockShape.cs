@@ -6,10 +6,10 @@ public class rockShape : ShapeController
     protected override void Awake()
     {
         colliderPath = new[] {
-            new Vector2(-0.2499785f, 0.2086034f),
-            new Vector2(-0.3916478f, -0.3407087f),
-            new Vector2(0.3968053f, -0.3405318f),
-            new Vector2(0.29849f, 0.2058749f)
+            new Vector2(-0.1838882f, 0.4480977f),
+            new Vector2(-0.1868111f, -0.4453743f),
+            new Vector2(0.3097871f, -0.4517894f),
+            new Vector2(0.307664f, 0.4376268f)
         };
 
         base.Awake();

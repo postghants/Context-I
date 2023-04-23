@@ -4,6 +4,11 @@ using UnityEngine.InputSystem;
 
 public class devMechanicController : MonoBehaviour
 {
+    [SerializeField] private GameObject collectiblePrefab;
+    [SerializeField] private float copyCooldown, pasteCooldown;
+    private float currentCopyCooldown, currentPasteCooldown = 0f;
+    private bool isCopyOnCooldown, isPasteOnCooldown = true;
+
     public Type heldMechanic;
     public Transform aimArrow;
     public devUIController devUI;
@@ -32,17 +37,21 @@ public class devMechanicController : MonoBehaviour
     public void OnAction1(InputAction.CallbackContext context)
     {
         
-        if (context.started)
+        if (context.started && !isCopyOnCooldown)
         {
             if (suckAudio.isPlaying)
                 suckAudio.Stop(); 
             if (scanParticles.isPlaying)
                 scanParticles.Stop();
 
-            suckAudio.Play();
-            scanParticles.Play();
-            if(closestMechanic != null) 
+
+            if (closestMechanic != null)
+            {
+                suckAudio.Play();
+                //scanParticles.Play();
                 ChangeHeldMechanic(closestMechanic.GetMechanic());
+                isCopyOnCooldown = true;
+            }
         }
     }
     public void OnAction2(InputAction.CallbackContext context)
@@ -66,10 +75,30 @@ public class devMechanicController : MonoBehaviour
 
     private void Update()
     {
+        UpdateCooldowns();
+
         ScanForMechanics();
         if (aiming)
         {
             aimArrow.SetPositionAndRotation(aim * aimArrowOffset + new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(0, 0, aimAngle));
+        }
+    }
+
+    private void UpdateCooldowns()
+    {
+        if (isCopyOnCooldown) currentCopyCooldown -= Time.deltaTime;
+        if (isPasteOnCooldown) currentPasteCooldown -= Time.deltaTime;
+
+        if (currentCopyCooldown <= 0f)
+        {
+            currentCopyCooldown = copyCooldown;
+            isCopyOnCooldown = false;
+        }
+
+        if (currentPasteCooldown <= 0f)
+        {
+            currentPasteCooldown = pasteCooldown;
+            isPasteOnCooldown = false;
         }
     }
 
@@ -90,7 +119,7 @@ public class devMechanicController : MonoBehaviour
                 }
             }
         }
-        if(closestMechanic != null)
+        if(closestMechanic != null && !isCopyOnCooldown)
         {
             devScanIcon.gameObject.SetActive(true);
             devScanIcon.transform.position = closestMechanic.transform.position + scanIconOffset;
@@ -106,11 +135,21 @@ public class devMechanicController : MonoBehaviour
     {
         heldMechanic = newMechanic;
         devUI.SetIconMechanic(newMechanic);
+        SpawnCollectible();
+    }
+
+    private void SpawnCollectible()
+    {
+        CollectibleIcon collectible = Instantiate(collectiblePrefab).GetComponent<CollectibleIcon>();
+
+        collectible.transform.position = devScanIcon.transform.position;
+        collectible.SetIconType(heldMechanic);
+        collectible.SetTarget(transform);
     }
 
     public void ShootProjectile()
     {
-        if (heldMechanic != null)
+        if (heldMechanic != null && !isPasteOnCooldown)
         {
             if (shootAudio.isPlaying)
             {
@@ -124,6 +163,9 @@ public class devMechanicController : MonoBehaviour
             dpc.speed = projectileSpeed;
             dpc.direction = aim;
             dpc.lifespan = projectileLifespan;
+
+            dpc.SetIconMechanic(heldMechanic);
+            isPasteOnCooldown = true;
         }
     }
 }

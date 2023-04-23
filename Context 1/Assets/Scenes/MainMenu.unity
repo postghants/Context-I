@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876da7da311aada418d5429911de0679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: NovaLevel1
+  nextLevelName: MainLevel1
   WiggleSize: 4
   WiggleDuration: 1.5
 --- !u!114 &4747589

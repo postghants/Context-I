@@ -3,6 +3,12 @@ using UnityEngine;
 
 public abstract class MechanicController : MonoBehaviour
 {
+    private float bumpStrength = 2f;
+    private void Start()
+    {
+        Rigidbody2D body = GetComponent<Rigidbody2D>();
+        body.velocity += new Vector2(0, bumpStrength);
+    }
     public static Sprite GetIcon(Type mechanic)
     {
         return Resources.Load<Sprite>("Icons/" + mechanic.Name + "Icon");
