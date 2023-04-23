@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NovaLevel0.unity
-    guid: d9e9a9488da95834fa145aca5d3e17cf
+    path: Assets/Scenes/MainMenu.unity
+    guid: 96810a7cc794e8b48bf40db4f93c3be2
   - enabled: 1
-    path: Assets/Scenes/NovaLevel1.unity
-    guid: af2143e6f51af204b96da70c96e99b62
+    path: Assets/Scenes/MainLevel1.unity
+    guid: 6f021418c3d0e2d4db46717dfadabab7
+  - enabled: 1
+    path: Assets/Scenes/MainLevel2.unity
+    guid: 86162c55e19d5b94595734634c94834e
   - enabled: 1
     path: Assets/Scenes/MainLevel3.unity
     guid: 583cf1f69eb6bde42a4a42e3c770f9f2

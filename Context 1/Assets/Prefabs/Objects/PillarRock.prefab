@@ -229,7 +229,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 100
+  m_Mass: 2.25
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -311,8 +311,8 @@ MonoBehaviour:
   - {fileID: 6982701004397015211}
   - {fileID: 6982701003714851747}
   m_Bounds:
-    m_Center: {x: 0.008186102, y: -0.11596975, z: 0}
-    m_Extent: {x: 0.4918139, y: 0.33764246, z: 0}
+    m_Center: {x: 0.008186102, y: -0.11596972, z: 0}
+    m_Extent: {x: 0.4918139, y: 0.33764243, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
