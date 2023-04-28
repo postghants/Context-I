@@ -88,7 +88,7 @@ public class MenuPrompt : MonoBehaviour
 
             yield return null;
         }
-        yield return new WaitForSeconds(messageDelay);
+        yield return new WaitForSeconds(2 * messageDelay);
 
 
         SceneManager.LoadScene(nextLevelName);
